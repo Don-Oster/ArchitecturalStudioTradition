@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchitecturalStudioTraditio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchitecturalStudioTradition.CQRS", "ArchitecturalStudioTradition.CQRS\ArchitecturalStudioTradition.CQRS.csproj", "{66935706-3968-4A3A-94DA-FE6436F5A08E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchitecturalStudioTradition.Database", "ArchitecturalStudioTradition.Database.PostgreSQL\ArchitecturalStudioTradition.Database.csproj", "{0B9A9050-DBC9-4978-84A2-701C743A9EA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchitecturalStudioTradition.Database", "ArchitecturalStudioTradition.Database\ArchitecturalStudioTradition.Database.csproj", "{0B9A9050-DBC9-4978-84A2-701C743A9EA6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchitecturalStudioTradition.Application", "ArchitecturalStudioTradition.Application\ArchitecturalStudioTradition.Application.csproj", "{70447BBB-23D3-4F1B-9568-53B93EA90041}"
 EndProject
@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchitecturalStudioTraditio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchitecturalStudioTradition.WebApi.Tests", "ArchitecturalStudioTradition.WebApi.Tests\ArchitecturalStudioTradition.WebApi.Tests.csproj", "{1B65C15C-9E33-4F62-876D-E2F59A3EE49D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchitecturalStudioTradition.Database.Tests", "ArchitecturalStudioTradition.Database.PostgreSQL.Tests\ArchitecturalStudioTradition.Database.Tests.csproj", "{862D44FD-9E7E-4182-A49E-6B27716DF0E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchitecturalStudioTradition.Database.Tests", "ArchitecturalStudioTradition.Database.Tests\ArchitecturalStudioTradition.Database.Tests.csproj", "{862D44FD-9E7E-4182-A49E-6B27716DF0E9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchitecturalStudioTradition.Infrastructure.Tests", "ArchitecturalStudioTradition.Infrastructure.Tests\ArchitecturalStudioTradition.Infrastructure.Tests.csproj", "{B1CFE420-B7BF-4048-8554-66848E787243}"
 EndProject
