@@ -1,0 +1,10 @@
+x<header>
+  <at-icon size="lg" color="gray" hover="true" (click)="isVisible = !isVisible" [type]="!isVisible ? 'menu' : 'remove'"></at-icon>
+  <div class="logo"></div>
+  <section class="icons-container">
+    <ul class="right">
+      <at-icon size="lg" type="web" (click)="openSwitchLanguageModal()"></at-icon>
+      <app-user-icon *ngIf="user" [user]="user"></app-user-icon>
+    </ul>
+  </section>
+</header>

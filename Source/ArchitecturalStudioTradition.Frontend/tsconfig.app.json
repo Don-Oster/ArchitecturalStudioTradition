@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": []
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "src/test.ts",
+    "src/**/*.spec.ts",
+    "src/ssr/*",
+    "src/selfhost/*",
+    "src/main.ssr.*",
+    "src/main.selfhost.*"
+  ],
+  "angularCompilerOptions": {
+    "preserveWhitespaces": true
+  }
+}

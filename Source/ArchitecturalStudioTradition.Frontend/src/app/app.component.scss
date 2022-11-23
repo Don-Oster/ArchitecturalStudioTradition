@@ -1,0 +1,32 @@
+@import 'variables';
+
+.header {
+  position: -webkit-sticky;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+
+.body {
+    min-height: calc(100vh - #{$footer-height});
+}
+
+.footer {
+  min-height: calc(100vh - #{$footer-height});
+}
+
+.alert {
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+
+  &.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+  }
+}

@@ -1,0 +1,18 @@
+<ng-container *ngIf="user.isAuthorized; then loggedIn; else notLoggedIn"></ng-container>
+
+<ng-template #loggedIn>
+  <at-icon class="right" [type]="item.icon" size="xl"
+           (tooltip)="item.text"
+           [dropDownActive]="isDropDownActive"
+           [at-dropdown-menu]="menu"></at-icon>
+
+  <ng-template #menu>
+    <at-dropdown-menu (mouseleave)="dropDownToggled(false)" (mouseenter)="dropDownToggled(true)" class="at-blackbar-dropdown">
+      <at-dropdown-menu-item (clicked)="logOut()">Log Out</at-dropdown-menu-item>
+    </at-dropdown-menu>
+  </ng-template>
+</ng-template>
+
+<ng-template #notLoggedIn>
+  <at-icon class="right" [type]="item.icon" size="xl" (iconClick)="logIn()" (tooltip)="item.text"></at-icon>
+</ng-template>

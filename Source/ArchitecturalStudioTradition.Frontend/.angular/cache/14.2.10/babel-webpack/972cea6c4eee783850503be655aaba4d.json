@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { InjectionToken } from '@angular/core';\nexport const API_BASE_URL_TOKEN = new InjectionToken('ArchTradition.WebApi base url');\nexport const SSR_API_BASE_URL_TOKEN = new InjectionToken('ArchTradition.WebApi base url for Server-Side Rendering');","map":null,"metadata":{},"sourceType":"module"}

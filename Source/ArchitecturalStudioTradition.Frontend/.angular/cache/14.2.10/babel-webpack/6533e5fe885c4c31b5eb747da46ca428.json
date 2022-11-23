@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { ArchitectureComponent } from './architecture.component';\nexport const routes = [{\n  path: '',\n  component: ArchitectureComponent\n}];","map":null,"metadata":{},"sourceType":"module"}

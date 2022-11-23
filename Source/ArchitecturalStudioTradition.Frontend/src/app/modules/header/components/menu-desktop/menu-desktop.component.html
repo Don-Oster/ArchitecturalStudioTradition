@@ -1,0 +1,29 @@
+<header>
+  <section class="logo-container">
+    <a [routerLink]="menuItems.logoItem.link | baseLink" class="logo"></a>
+  </section>
+  <section class="icons-container">
+    <ul class="right">
+      <li *ngFor="let item of menuItems.iconsBar">
+        <div *ngIf="item.icon && item.headerAction" [class.clickable]="!item.disabled" class="ml-xl">
+          <at-icon [class.active]="item.active" [type]="item.icon" size="xl" (iconClick)="handleHeaderAction(item)"></at-icon>
+        </div>
+      </li>
+      <app-user-icon *ngIf="user" [user]="user"></app-user-icon>
+    </ul>
+  </section>
+  <section class="menu-items-container">
+    <nav class="navigation">
+      <ul>
+        <li *ngFor="let item of menuItems.header">
+          <a *ngIf="!item.icon" [routerLinkActive]="['active']" [routerLink]="item.link | baseLink">{{ item?.text }}</a>
+          <a *ngIf="item.icon && item.link" [routerLinkActive]="['active']" [routerLink]="item.link | baseLink">
+            <at-icon [type]="item.icon" size="xl"></at-icon>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </section>
+</header>
+
+<!--<app-search-overlay *ngIf="displaySearchOverlay" (closeEvent)="setSearchOverlay(false)"></app-search-overlay>-->

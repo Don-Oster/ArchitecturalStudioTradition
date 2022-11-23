@@ -1,0 +1,33 @@
+$font-size-title: 40px;
+$font-size-sub-title: 32px;
+$font-size-section: 24px;
+$font-size-sub-section: 20px;
+$font-size-high-content: 16px;
+$font-size-content: 14px;
+$font-size-small: 12px;
+
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1) {
+  line-height: $lineHeight;
+  max-height: $lineHeight * $lineCount;
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  position: relative;
+  margin-right: -1em;
+  padding-right: 1em;
+  text-align: left;
+  word-break: break-word;
+
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    display: -webkit-box;
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+    -webkit-line-clamp: $lineCount;
+  }
+}

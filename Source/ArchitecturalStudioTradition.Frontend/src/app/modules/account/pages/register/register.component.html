@@ -1,0 +1,68 @@
+<form class="form" [formGroup]="registerForm">
+  <header class="form-header">
+    <h1 class="form-title heading">Register</h1>
+    <p class="form-legend">Please fill in the information below:</p>
+  </header>
+  <div class="form-group mb-lg"
+       [ngClass]="{ 'has-error': isFirstNameValid}">
+    <input cui-input
+           type="text"
+           name="firstName"
+           formControlName="firstName"
+           class="form-control"
+           aria-label="First name"
+           autofocus />
+    <span *ngIf="isFirstNameValid" class="fc-danger">
+      Please enter first name.
+    </span>
+  </div>
+  <div class="form-group mb-lg"
+       [ngClass]="{ 'has-error': isLastNameValid}">
+    <input cui-input
+           type="text"
+           name="lastName"
+           formControlName="lastName"
+           class="form-control"
+           aria-label="Last name"
+           autofocus />
+    <span *ngIf="isLastNameValid" class="fc-danger">
+      Please enter last name.
+    </span>
+  </div>
+  <div class="form-group mb-lg"
+       [ngClass]="{ 'has-error': isEmailInvalid }">
+    <input cui-input
+           type="email"
+           name="email"
+           formControlName="email"
+           class="form-input"
+           aria-label="Email"
+           autofocus />
+    <span *ngIf="isEmailInvalid"
+          class="fc-danger">
+      Please enter valid email.
+    </span>
+  </div>
+  <div class="form-group mb-lg"
+       [ngClass]="{ 'has-error': isPasswordInvalid }">
+    <input cui-input
+           type="password"
+           name="password"
+           formControlName="password"
+           class="form-input"
+           aria-label="Password"
+           autofocus />
+    <span *ngIf="isPasswordInvalid"
+          class="fc-danger">
+      Password must contain more than 8 characters, 1 upper case letter, and 1 special character.
+    </span>
+    <app-password-strength-checker barLabel="Password Strength: "
+                                   [passwordToVerify]="logInForm.get('password').value"
+                                   (passwordStrength)="passwordValid($event)">
+    </app-password-strength-checker>
+  </div>
+
+  <at-button type="primary" size="lg" class="mt-8" [loader]="isLoading" (buttonClick)="register()" [disabled]="!registerForm.valid">
+    Register
+  </at-button>
+</form>

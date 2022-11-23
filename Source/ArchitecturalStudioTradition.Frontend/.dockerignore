@@ -1,0 +1,12 @@
+*
+!src
+!.npmrc
+!nginx.conf
+!*.json
+!webpack.*.js
+!projects
+!cypress
+!karma.conf.js
+!bin
+!.nycrc
+!ssr.server.ts

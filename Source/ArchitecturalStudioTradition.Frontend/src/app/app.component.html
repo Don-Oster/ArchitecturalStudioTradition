@@ -1,0 +1,19 @@
+<div class="app-layout" id="view-main">
+  <section class="header">
+    <app-header [user]="user"></app-header>
+  </section>
+  <section class="body">
+    <router-outlet></router-outlet>
+  </section>
+  <section class="footer">
+    <app-footer></app-footer>
+  </section>
+  <app-sidebar-menu></app-sidebar-menu>
+</div>
+
+<div class="alert alert-warning" *ngIf="!isOnline()">
+  <strong>WARNING</strong>: the app is currently <i>offline</i>:
+  some features that rely upon the back-end might not work as
+  expected. This message will automatically disappear as soon
+  as the internet connection becomes available again.
+</div>

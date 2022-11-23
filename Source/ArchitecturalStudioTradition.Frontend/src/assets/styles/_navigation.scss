@@ -1,0 +1,236 @@
+@import './_variables';
+
+.nav {
+  .nav-loading {
+    $at-translate-y: -100%
+  }
+
+  .nav-loaded, .nav-loading {
+    transform: translate($at-translate-x,$at-translate-y) rotate($at-rotate) skewX($at-skew-x) skewY($at-skew-y) scaleX($at-scale-x) scaleY($at-scale-y);
+  }
+
+  .nav-loaded {
+    $at-translate-y: 0px;
+    transition: transform .3s ease-in-out .8s
+  }
+
+  .mobile-burger-btn {
+    background-color: transparent;
+    border-style: none;
+    height: 1rem;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 1.5rem;
+
+    .icon {
+      $at-translate-y: -50%;
+      background-color: currentColor;
+      display: inline-block;
+      height: 1px;
+      position: absolute;
+      top: 50%;
+      transform: translate($at-translate-x,$at-translate-y) rotate($at-rotate) skewX($at-skew-x) skewY($at-skew-y) scaleX($at-scale-x) scaleY($at-scale-y);
+      transition-duration: .3s;
+      transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;
+      transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;
+      transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;
+      transition-timing-function: cubic-bezier(.4,0,.2,1);
+      width: 100%;
+
+      &:before {
+        top: -6px
+      }
+
+      &:after {
+        bottom: -6px
+      }
+
+      &:before, &:after {
+        background-color: currentColor;
+        content: "";
+        height: 1px;
+        left: 0;
+        position: absolute;
+        transition-duration: .3s;
+        transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;
+        transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;
+        transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;
+        transition-timing-function: cubic-bezier(.4,0,.2,1);
+        width: 100%
+      }
+
+      &.-open {
+        background-color: transparent;
+
+        &:before {
+          $at-rotate: 45deg;
+          top: 0
+        }
+
+        &:after {
+          $at-rotate: -45deg;
+          bottom: 0
+        }
+
+        &:before, &:after {
+          transform: translate($at-translate-x,$at-translate-y) rotate($at-rotate) skewX($at-skew-x) skewY($at-skew-y) scaleX($at-scale-x) scaleY($at-scale-y);
+          background-color: currentColor;
+        }
+      }
+    }
+  }
+
+  .desktop-navigation-link {
+    transition-duration: .3s;
+    transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;
+    transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;
+    transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    white-space: nowrap;
+
+    .text-content-light &.-underline:after {
+      $at-bg-opacity: 1;
+      background-color: rgba($at-light,$at-bg-opacity)
+    }
+
+    .text-content-dark &.-underline:after {
+      $at-bg-opacity: 1;
+      background-color: rgba($at-dark,$at-bg-opacity)
+    }
+
+    &:focus {
+      outline: 2px solid transparent;
+      outline-offset: 2px
+    }
+
+    &.-underline {
+      position: relative;
+
+      &:after {
+        $at-bg-opacity: 1;
+        background-color: rgba($at-dark,$at-bg-opacity);
+        bottom: 5px;
+        content: "";
+        height: 1px;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        transform: translateY(5px);
+        transform-origin: center;
+        transition: transform .3s ease-in-out,opacity .4s ease-in-out;
+        width: 100%
+      }
+
+      &:hover {
+        opacity: 1;
+
+        &:after {
+          opacity: 1;
+          transform: translateY(0)
+        }
+      }
+
+      &.-active {
+        opacity: 1;
+
+        &:after {
+          opacity: 1;
+          transform: translateY(0)
+        }
+      }
+    }
+  }
+
+  .scrolled-background-transparent {
+    background-color: transparent
+  }
+
+  .scrolled-background-light {
+    $at-bg-opacity: 1;
+    background-color: rgba($at-light,$at-bg-opacity)
+  }
+
+  .scrolled-background-light, .scrolled-background-light ~ div {
+    $at-background-color: rgb($at-light)
+  }
+
+  .scrolled-background-dark {
+    $at-bg-opacity: 1;
+    background-color: rgba($at-dark,$at-bg-opacity)
+  }
+
+  .scrolled-background-dark, .scrolled-background-dark ~ div {
+    $at-background-color: $at-dark
+  }
+
+  .scrolled-background-gray {
+    $at-bg-opacity: 1;
+    background-color: rgba($at-gray,$at-bg-opacity)
+  }
+
+  .scrolled-background-gray, .nav .scrolled-background-gray ~ div {
+    $at-background-color: $at-gray
+  }
+
+  ..scrolled-background-gray-light {
+    $at-bg-opacity: 1;
+    background-color: rgba($at-gray-light,$at-bg-opacity)
+  }
+
+  .scrolled-background-gray-light, .scrolled-background-gray-light ~ div {
+    $at-background-color: $at-gray-light
+  }
+}
+
+.nav-bar {
+  &.-active {
+    $at-bg-opacity: 1;
+    background-color: rgb(255 255 255/$at-bg-opacity)
+  }
+
+  .search-form svg {
+    height: 1.4rem
+  }
+
+  .search-form .search-icon {
+    padding-bottom: .375rem
+  }
+}
+
+@media(min-width: $screen-mobile) {
+  .nav-bar:before {
+    background-color: #fff;
+    bottom: 0;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform .3s ease-in-out;
+    width: 100%;
+    z-index: -1
+  }
+
+  .nav-bar.-active:before, .nav-bar:not(.-disable-hover):hover:before {
+    transform: scaleY(1)
+  }
+}
+
+@media (min-width: $screen-mobile) {
+  .nav-bar .search-form .search-icon {
+    padding-bottom: .625rem
+  }
+}
+
+.nav-icons svg {
+  height: 1.1rem;
+  width: auto
+}
+
+.nav-mobileMenu .search-form svg {
+  height: 1rem
+}

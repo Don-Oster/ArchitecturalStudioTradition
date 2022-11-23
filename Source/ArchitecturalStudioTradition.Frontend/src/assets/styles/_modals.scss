@@ -1,0 +1,191 @@
+@import './_variables';
+
+.modal-open {
+  overflow: hidden;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10000000000;
+  display: none;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+
+  &.fade .modal-dialog {
+    transform: translateY(-25%);
+    transition: transform .3s ease-out
+  }
+
+  &.in .modal-dialog {
+    transform: translate(0)
+  }
+}
+
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+// Shell div to position the modal with bottom padding
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 10px;
+}
+
+// Actual modal
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #999;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: 6px;
+  box-shadow: 0 3px 9px rgba(0,0,0,.5);
+  outline: 0;
+
+  .modal-close-button {
+    $at-bg-opacity: 1;
+    $at-shadow: 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);
+    background-color: rgb(255 255 255/$at-bg-opacity);
+    border-radius: 9999px;
+    box-shadow: $at-ring-offset-shadow,$at-ring-shadow,$at-shadow;
+    cursor: pointer;
+    height: 42px;
+    overflow: visible;
+    padding: .5rem;
+    position: relative;
+    width: 42px;
+
+    &:after, &:before {
+      $at-bg-opacity: 1;
+      background-color: rgba($at-dark,$at-bg-opacity);
+      content: "";
+      height: 25px;
+      width: 2px;
+      transform: translate($at-translate-x,$at-translate-y) rotate($at-rotate) skewX($at-skew-x) skewY($at-skew-y) scaleX($at-scale-x) scaleY($at-scale-y);
+    }
+
+    &:before {
+      $at-rotate: 45deg
+    }
+
+    :after {
+      $at-rotate: -45deg
+    }
+
+    @media (min-width: $screen-small) {
+      & {
+        $at-shadow: 0 0 #0000;
+        background-color: transparent;
+        box-shadow: $at-ring-offset-shadow,$at-ring-shadow,$at-shadow
+      }
+
+      @media(min-width: $screen-small) {
+        &:after, &:before {
+          height: 32px
+        }
+      }
+
+      @media(min-width: $screen-medium) {
+        &:after, &:before {
+          height: 45px
+        }
+      }
+    }
+  }
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+
+  &.fade {
+    filter: alpha(opacity=0);
+    opacity: 0
+  }
+
+  &.in {
+    filter: alpha(opacity=50);
+    opacity: .5;
+  }
+}
+
+.modal-header {
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+
+  @include clearfix;
+}
+.modal-header .close {
+  margin-top: -2px;
+}
+
+.modal-title {
+  margin: 0;
+  line-height: 1.42857
+}
+
+.modal-body {
+  position: relative;
+  padding: 15px
+}
+
+.modal-footer {
+  padding: 15px;
+  border-top: 1px solid #e5e5e5;
+
+  @include clearfix;
+
+  .btn + .btn {
+    margin-bottom: 0;
+    margin-left: 5px;
+  }
+
+  .btn-group .btn + .btn {
+    margin-left: -1px;
+  }
+
+  .btn-block + .btn-block {
+    margin-left: 0;
+  }
+}
+
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}
+
+@media (min-width: $screen-small) {
+  .modal-dialog {
+    width: 600px;
+    margin: 30px auto;
+  }
+
+  .modal-content {
+    box-shadow: 0 5px 15px rgba(0,0,0,.5)
+  }
+
+  .modal-sm {
+    width: 300px;
+  }
+}
+
+@media (min-width: $screen-medium) {
+  .modal-lg {
+    width: 900px;
+  }
+}

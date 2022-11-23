@@ -1,0 +1,90 @@
+@import './_variables';
+
+.at-icon {
+  position: relative;
+  display: inline-block;
+  font-family: 'ArchitecturalStudio Tradition Font';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1;
+  vertical-align: middle;
+  color: $at-dark;
+  top: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-rendering: optimizeLegibility;
+  transform: translate($at-translate-x,$at-translate-y) rotate($at-rotate) skewX($at-skew-x) skewY($at-skew-y) scaleX($at-scale-x) scaleY($at-scale-y);
+  transform-origin: center;
+  transition-duration: .15s;
+  transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;
+  transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;
+  transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  transition-timing-function: cubic-bezier(0,0,.2,1);
+
+  &.at-icon-disabled {
+    color: $at-gray-lighter;
+    cursor: not-allowed;
+  }
+
+  &.at-icon-gray {
+    color: $at-gray;
+
+    &.at-icon-on-hover:hover {
+      transition: color 0.5 ease;
+      color: $at-gray-dark;
+    }
+
+    &.at-icon-disabled {
+      color: $at-gray-lighter;
+      cursor: not-allowed;
+    }
+  }
+
+  &.at-icon-selected {
+    color: $at-warning;
+  }
+
+  &-xs,
+  &-sm {
+    font-size: 12px;
+  }
+
+  &-md {
+    font-size: 16px;
+  }
+
+  &-lg {
+    font-size: 22px;
+  }
+
+  &-xl {
+    font-size: 32px;
+  }
+
+  &.icon-ec-social-facebook {
+    &:before {
+      content: '\e908';
+    }
+  }
+
+  &.icon-ec-social-linkedin {
+    &:before {
+      content: '\e909';
+    }
+  }
+
+  &.icon-ec-social-twitter {
+    &:before {
+      content: '\e90a';
+    }
+  }
+
+  &.icon-ec-social-youtube {
+    &:before {
+      content: '\e90b';
+    }
+  }
+}

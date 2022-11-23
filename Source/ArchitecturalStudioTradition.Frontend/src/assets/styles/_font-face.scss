@@ -1,0 +1,22 @@
+$font-path: 'assets/';
+
+$archtradition-font-name: 'archtradition-font';
+$genia-font-name: 'genia-font';
+$archtradition-font-svg-id: 'at-icon-font';
+
+// Import the fonts
+@font-face {
+  font-family: 'ArchitecturalStudio Tradition Font';
+  src: url('/#{$font-path}#{$archtradition-font-name}.eot');
+  src: url('/#{$font-path}#{$archtradition-font-name}.eot?#iefix') format('embedded-opentype'), url('/#{$font-path}#{$archtradition-font-name}.woff') format('woff'), url('/#{$font-path}#{$archtradition-font-name}.ttf') format('truetype'), url('/#{$font-path}#{$archtradition-font-name}.svg##{$font-svg-id}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Genia';
+  src: url('/#{$font-path}#{$genia-font-name}.eot');
+  src: url('/#{$font-path}#{$genia-font-name}.eot?#iefix') format('embedded-opentype'), url('/#{$font-path}#{$genia-font-name}.woff') format('woff'), url('/#{$font-path}#{$genia-font-name}.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}

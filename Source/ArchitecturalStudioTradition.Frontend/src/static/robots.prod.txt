@@ -1,0 +1,9 @@
+User-agent: *
+Sitemap: https://arch-tradition.com/sitemap.xml
+Disallow: /api/
+Disallow: /Api/
+Disallow: /browser/
+Disallow: /Browser/
+Disallow: /search/
+Disallow: /Search/
+Disallow: /not-found/

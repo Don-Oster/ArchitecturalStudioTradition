@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { BlogComponent } from './blog.component';\nexport const routes = [{\n  path: '',\n  component: BlogComponent\n}];","map":null,"metadata":{},"sourceType":"module"}

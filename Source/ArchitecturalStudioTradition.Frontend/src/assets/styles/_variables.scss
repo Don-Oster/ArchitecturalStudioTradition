@@ -1,0 +1,62 @@
+@import './_colors';
+@import './_typography';
+@import './_spacing';
+
+$at-bg-opacity: 1;
+$at-text-opacity: 1;
+$at-border-opacity: 0.3;
+$at-background-color: $at-light;
+$at-content: "";
+$at-border-spacing-x: 0;
+$at-border-spacing-y: 0;
+$at-translate-x: 0;
+$at-translate-y: 0;
+$at-rotate: 0;
+$at-skew-x: 0;
+$at-skew-y: 0;
+$at-scale-x: 1;
+$at-scale-y: 1;
+$at-scroll-snap-strictness: proximity;
+$at-shadow: 0 0 #0000;
+$at-shadow-colored: 0 0 #0000;
+$at-drop-shadow: null;
+$at-backdrop-blur: null;
+$at-backdrop-brightness: null;
+$at-backdrop-contrast: null;
+$at-backdrop-grayscale: null;
+$at-backdrop-hue-rotate: null;
+$at-backdrop-invert: null;
+$at-backdrop-opacity: null;
+$at-backdrop-saturate: null;
+$at-backdrop-sepia: null;
+$at-ring-inset: null;
+$at-ring-offset-width: 0px;
+$at-ring-offset-color: #fff;
+$at-ring-color: rgba(59,130,246,.5);
+$at-ring-offset-shadow: 0 0 #0000;
+$at-ring-shadow: 0 0 #0000;
+$at-shadow: 0 0 #0000;
+$at-shadow-colored: 0 0 #0000;
+$at-blur: null;
+$at-brightness: null;
+$at-contrast: null;
+$at-grayscale: null;
+$at-hue-rotate: null;
+$at-invert: null;
+$at-saturate: null;
+$at-sepia: null;
+$screen-mobile: 768px;
+$screen-small: 992px;
+$screen-medium: 1200px;
+$screen-large: 1500px;
+
+@mixin clearfix() {
+  &:after, &:before {
+    display: table;
+    content: " ";
+  }
+
+  &:after {
+    clear: both;
+  }
+}

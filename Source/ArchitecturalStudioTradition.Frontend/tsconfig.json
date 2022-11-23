@@ -1,0 +1,55 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "es2020",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "ES2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@archtradition-contract": [
+        "./projects/archtradition-contract/src/public-api"
+      ],
+      "@archtradition-contract/*": [
+        "./projects/archtradition-contract/src/public-api"
+      ],
+      "@environment": [
+        "./src/environments/environment"
+      ],
+      "@app/*": [
+        "./src/app/*"
+      ],
+      "@shared/*": [
+        "./src/app/shared/*"
+      ],
+      "@consts/*": [
+        "./src/app/consts/*"
+      ],
+      "@core/*": [
+        "./src/app/core/*"
+      ],
+      "@store/*": [
+        "./src/app/store/*"
+      ],
+      "@tests/*": [
+        "./src/tests/*"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}

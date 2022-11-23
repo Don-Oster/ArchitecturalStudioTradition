@@ -1,0 +1,141 @@
+@import './_variables';
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-input, .form-textarea {
+  -webkit-appearance: none;
+  display: block;
+  padding: 12px 14px;
+  border-radius: 0;
+  border: 1px solid $at-border-color;
+  width: 100%;
+  line-height: normal;
+  resize: none;
+  transition: border-color .1s ease-in-out;
+  background: transparent;
+}
+
+.form-input-help {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  font-size: calc(var($font-size-content - 2px);
+  color: $at-gray-dark;
+  transform: translateY(-50%);
+}
+
+.link {
+  transition: color .2s ease-in-out,opacity .2s ease-in-out;
+}
+
+.link:hover, .link.is-active {
+  color: var(--text-color-light);
+}
+
+.form-row {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+
+  &:first-of-type {
+    margin-top: 0
+  }
+
+  &.gutter > :not([hidden]) ~ :not([hidden]) {
+    $at-space-y-reverse: 0;
+    margin-bottom: calc(1rem*$at-space-y-reverse);
+    margin-top: calc(1rem*(1 - $at-space-y-reverse))
+  }
+
+  &.form-row.gutter > :not([hidden]) ~ :not([hidden]) {
+    $at-space-y-reverse: 0;
+    $at-space-x-reverse: 0;
+    margin: calc(0px*(1 - v$at-space-y-reverse)) calc(1.5rem*$at-space-x-reverse) calc(0px*$at-space-y-reverse) calc(1.5rem*(1 - $at-space-x-reverse))
+  }
+
+  .form-col-half {
+    width: 100%
+  }
+
+  .form-col-full, & > label {
+    flex: 1 1 0%
+  }
+
+  .form-col-auto {
+    flex: 1 1 auto
+  }
+
+  input[type=checkbox], input[type=radio] {
+    display: none
+  }
+
+  input[type=checkbox]:not(.color-checkbox) ~ label, input[type=checkbox]:not(.color-checkbox) ~ span, input[type=radio]:not(.color-checkbox) ~ label, input[type=radio]:not(.color-checkbox) ~ span {
+    cursor: pointer;
+    display: flex;
+    position: relative;
+
+    &:before {
+      border-color: currentColor;
+      border-radius: 9999px;
+      border-width: 1px;
+      content: "";
+      height: 1.25rem;
+      margin-right: 1rem;
+      opacity: .5;
+      position: relative;
+      width: 1.25rem
+    }
+
+    &:after {
+      $at-scale-x: 0.6;
+      $at-scale-y: 0.6;
+      background-color: transparent;
+      border-radius: 9999px;
+      content: "";
+      height: 1.25rem;
+      position: absolute;
+      transform: translate($at-translate-x,$at-translate-y) rotate($at-rotate) skewX($at-skew-x) skewY($at-skew-y) scaleX($at-scale-x) scaleY($at-scale-y);
+      transition-duration: .2s;
+      transition-property: transform;
+      transition-timing-function: cubic-bezier(.4,0,.2,1);
+      transition-timing-function: cubic-bezier(0,0,.2,1);
+      width: 1.25rem
+    }
+
+    &:not(.items-start) {
+      align-items: center;
+    }
+
+    &:not(.checkbox-toggle-label):not([class^=checkbox-toggle]):after {
+      $at-scale-x: 0.7;
+      $at-scale-y: 0.7;
+      background-color: currentColor;
+      transform: translate($at-translate-x,$at-translate-y) rotate($at-rotate) skewX($at-skew-x) skewY($at-skew-y) scaleX($at-scale-x) scaleY($at-scale-y);
+    }
+
+    .color-icon {
+      border-color: rgba(var(--base-dark),.5);
+
+      &:after {
+        $at-scale-x: 0.78;
+        $at-scale-y: 0.78;
+        transform: translate($at-translate-x,$at-translate-y) rotate($at-rotate) skewX($at-skew-x) skewY($at-skew-y) scaleX($at-scale-x) scaleY($at-scale-y);
+      }
+    }
+  }
+}
+
+@media (min-width: $screen-small) {
+  .form-row .form-col-half {
+    width: 50%
+  }
+}
+
+@media (min-width: $screen-mobile) {
+  .form-row {
+    margin-top: 1.5rem
+  }
+}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { API_BASE_URL } from './api-generated.contract';\nexport const ApiBaseUrlProvider = {\n  provide: API_BASE_URL,\n  useValue: '/api'\n};","map":null,"metadata":{},"sourceType":"module"}

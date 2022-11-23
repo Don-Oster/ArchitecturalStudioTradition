@@ -1,0 +1,43 @@
+<footer>
+    <section class="content">
+        <section class="left">
+            <div class="logo"></div>
+            <div class="info">© Architecture Studio "Tradition". {{ year }}</div>
+        </section>
+        <section class="social-media">
+          <div class="footer-content">
+            <p>Find us on social media</p>
+          </div>
+          <ul>
+            <li *ngFor="let item of social">
+              <a target="_blank" [href]="item.url"><at-icon background="none" [hover]="false" size="md" [type]="item.icon"></at-icon></a>
+            </li>
+          </ul>
+        </section>
+    </section>
+
+    <section class="newsletter-subscribtion">
+      <form class="form" [formGroup]="newsletterForm">
+        <section class="form-header">
+          <h1 class="form-title heading">Newsletter</h1>
+          <p class="form-legend">Enter your email to subscribe to our newsletter:</p>
+        </section>
+        <div class="form-group mb-lg" [ngClass]="{ 'has-error': isEmailInvalid }">
+          <input type="email" name="email" formControlName="email" class="form-input" aria-label="Email" autofocus />
+          <span *ngIf="isEmailInvalid" class="fc-danger">Please enter valid email.</span>
+        </div>
+        <at-button type="primary" size="lg" [loader]="isLoading" (buttonClick)="subscribeToNewsletter()" [disabled]="!newsletterForm.valid">
+          Recover
+        </at-button>
+      </form>
+    </section>
+
+    <section class="items-list">
+        <ul class="items">
+            <li *ngFor="let item of items">
+                <a *ngIf="item.internal" [routerLink]="item.url | baseLink" class="fs-small-r">{{ item.text }}</a>
+                <a *ngIf="!item.internal" [href]="item.url" class="fs-small-r" target="_blank">{{ item.text }}</a>
+            </li>
+        </ul>
+    </section>
+</footer>

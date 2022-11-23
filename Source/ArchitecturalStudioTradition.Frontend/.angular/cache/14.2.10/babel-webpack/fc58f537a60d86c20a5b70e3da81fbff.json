@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const environment = {\n  baseUrl: 'http://localhost:4200',\n  production: true,\n  apiBaseUrl: '/api/',\n  recaptcha: {\n    siteKey: '6LfKpnQiAAAAAHiuAaGm078tfMAtdZ2tPvLZrKox'\n  }\n};","map":null,"metadata":{},"sourceType":"module"}
