@@ -2,19 +2,19 @@ using ArchitecturalStudioTradition.Common.Exceptions;
 using ArchitecturalStudioTradition.Domain.SeedWork.Rules;
 using ArchitecturalStudioTradition.Infrastructure.RequestValidation;
 using Hellang.Middleware.ProblemDetails;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Http;
 
 namespace ArchitecturalStudioTradition.Infrastructure.ErrorHandling
 {
     public static class ProblemDetailsExtensions
     {
-        public static void ConfigureProblemDetails(this IServiceCollection services)
+        public static void ConfigureProblemDetails(this Microsoft.Extensions.DependencyInjection.IServiceCollection services)
         {
-            services.AddProblemDetails(x =>
+            services.AddProblemDetails(options =>
             {
-                x.Map<RequestValidationException>(e => new InvalidRequestProblemDetails(e));
-                x.Map<BadRequestException>(e => new InvalidRequestProblemDetails(e));
-                x.Map<BusinessRuleValidationException>(e => new BusinessRuleValidationProblemDetails(e));
+                options.MapToStatusCode<RequestValidationException>(StatusCodes.Status400BadRequest);
+                options.MapToStatusCode<BadRequestException>(StatusCodes.Status400BadRequest);
+                options.MapToStatusCode<BusinessRuleValidationException>(StatusCodes.Status409Conflict);
             });
         }
     }

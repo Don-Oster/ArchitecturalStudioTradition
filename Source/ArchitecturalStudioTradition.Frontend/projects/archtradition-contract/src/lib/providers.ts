@@ -1,9 +1,8 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Provider } from '@angular/core';
 
-import { API_BASE_URL, AccountsService } from './api-generated.contract';
-
 import { EveryRequestInterceptor } from './interceptors/every-request.interceptor';
+import { AccountsService,API_BASE_URL } from './api-generated.contract';
 
 const SERVICES = [
   AccountsService

@@ -14,7 +14,7 @@ import {
   TokenResponse,
   RegistrationResponse,
   AuthenticationResponse
-} from '@archtradition-contract';
+} from 'archtradition-contract';
 import { SocialAuthService, SocialUser } from "@abacritt/angularx-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "@abacritt/angularx-social-login";
 

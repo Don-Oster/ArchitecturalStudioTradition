@@ -1,17 +1,15 @@
-import { Injectable } from '@angular/core';
 import {
-    HttpInterceptor,
-    HttpRequest,
+    HttpEvent,
     HttpHandler,
-    HttpEvent
-} from '@angular/common/http';
+    HttpInterceptor,
+    HttpRequest} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs';
 
 
 @Injectable()
 export class EveryRequestInterceptor implements HttpInterceptor {
-
-    constructor() {}
 
     intercept(
         request: HttpRequest<any>,

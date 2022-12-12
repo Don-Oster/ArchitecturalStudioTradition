@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { InjectionToken } from '@angular/core';\nexport const META_BASE_URL_TOKEN = new InjectionToken('SSR Meta base Url');","map":null,"metadata":{},"sourceType":"module"}

@@ -1,11 +1,9 @@
 ﻿using ArchitecturalStudioTradition.Domain.Projects;
-using ArchitecturalStudioTradition.Model.UserIdentity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ArchitecturalStudioTradition.Database
 {
-    public class PostgreSqlDbContext : IdentityDbContext<User>
+    public class PostgreSqlDbContext : DbContext
     {
         public PostgreSqlDbContext(DbContextOptions options) : base(options)
         {

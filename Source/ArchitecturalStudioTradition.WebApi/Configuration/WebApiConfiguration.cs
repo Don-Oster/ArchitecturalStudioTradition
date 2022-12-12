@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ArchitecturalStudioTradition.WebApi.Configuration
 {
-    public class WebApiConfiguration : IPostgreSqlConfig, IJwtTokenConfiguration, IGoogleAuthConfiguration, IFacebookAuthConfiguration, IEmailConfiguration
+    public record WebApiConfiguration : IPostgreSqlConfig, IJwtTokenConfiguration, IGoogleAuthConfiguration, IFacebookAuthConfiguration, IEmailConfiguration
     {
         private const string ConfigurationPrefix = "ARCHTRADITION";
 

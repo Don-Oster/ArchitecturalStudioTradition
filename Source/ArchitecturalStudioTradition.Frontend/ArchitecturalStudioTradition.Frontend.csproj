@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NSwag.MSBuild" Version="13.16.1">
+    <PackageReference Include="NSwag.MSBuild" Version="13.18.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -30,8 +30,8 @@
   </ItemGroup>
 
   <Target Name="NSwag" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
-    <Message Importance="High" Text="$(NSwagExe_Net60) run nswag.json /variables:Configuration=$(Configuration)" />
-    <Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Net60) run projects/archtradition-contract/nswag.json /variables:Configuration=$(Configuration)" />
+    <Message Importance="High" Text="$(NSwagExe_Net70) run nswag.json /variables:Configuration=$(Configuration)" />
+    <Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Net70) run projects/archtradition-contract/nswag.json /variables:Configuration=$(Configuration)" />
     <Delete Files="$(ProjectDir)\obj\$(MSBuildProjectFile).NSwag.targets" />
   </Target>
   

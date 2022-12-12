@@ -27,7 +27,7 @@ namespace ArchitecturalStudioTradition.Application.Infrastructure.Behaviors
                 var response = await next();
 
                 _logger.LogInformation(Format("Handled"));
-                _logger.LogInformation(Format($"{ObjectInfo(response)}"));
+                if(response != null) _logger.LogInformation(Format($"{ObjectInfo(response)}"));
                 return response;
             }
             catch (Exception ex)

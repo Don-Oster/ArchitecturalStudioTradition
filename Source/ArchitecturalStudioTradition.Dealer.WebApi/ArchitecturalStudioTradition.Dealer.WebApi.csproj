@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>1830adc8-f636-45a1-831a-ef5afcf2353b</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetCore.CAP" Version="7.0.0" />
+    <PackageReference Include="DotNetCore.CAP.OpenTelemetry" Version="7.0.0" />
+    <PackageReference Include="DotNetCore.CAP.PostgreSql" Version="7.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ArchitecturalStudioTradition.Common\ArchitecturalStudioTradition.Common.csproj" />
+    <ProjectReference Include="..\ArchitecturalStudioTradition.Contract\ArchitecturalStudioTradition.Contract.csproj" />
+    <ProjectReference Include="..\ArchitecturalStudioTradition.Domain\ArchitecturalStudioTradition.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+option csharp_namespace = "ArchitecturalStudioTradition.FileStorage.Client";
+
+package greet;
+
+// The file storage service definition.
+service FileStorage {
+  // Returns list of files
+  rpc GetFileList (GetFileListRequest) returns (GetFileListResponse);
+  // Returns list a single file
+  rpc GetFile (GetFileRequest) returns (GetFileResponse);
+  // Saves the file
+  rpc SaveFile (SaveFileRequest) returns (SaveFileResponse);
+}
+
+// The request message containing the hash.
+message GetFileRequest {
+  string hash = 1;
+}
+
+// The request message containing the file.
+message GetFileResponse {
+  FileModel file = 1;
+}
+
+// The request message containing the hash.
+message GetFileListRequest {
+  string hash = 1;
+}
+
+// The request message containing the list of files.
+message GetFileListResponse {
+  repeated FileModel files = 1;
+}
+
+// The request message containing file name and file content.
+message SaveFileRequest {
+  string filePath = 1;
+  string fileName = 2;
+  bytes fileContent = 3;
+}
+
+message SaveFileResponse {
+  string hash = 1;
+}
+
+// The response message containing ile name and file url.
+message FileModel {
+  string fileName = 1;
+  string fileUrl = 2;
+}

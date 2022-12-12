@@ -7,6 +7,6 @@ if (environment.production) {
 }
 
 export { SsrServerModule } from './ssr/ssr.server.module';
+export { renderModule, renderModuleFactory } from '@angular/platform-server';
 export { SSR_API_BASE_URL_TOKEN } from '@core/interceptors/api-base-url.token';
 export { META_BASE_URL_TOKEN } from '@shared/services/meta-tags/meta-base-url.token';
-export { renderModule, renderModuleFactory } from '@angular/platform-server';

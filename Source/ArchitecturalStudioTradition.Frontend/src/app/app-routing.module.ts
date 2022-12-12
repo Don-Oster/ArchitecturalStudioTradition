@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+
+import { AboutComponent } from '@app/modules/about/about.component';
+import { routes as AccountRoutes } from '@app/modules/account/account.routes';
+import { routes as ArchitectureRoutes } from '@app/modules/architecture/architecture.routes';
+import { routes as BlogRoutes } from '@app/modules/blog/blog.routes';
+import { HomeComponent } from '@app/modules/home/home.component';
+import { routes as InteriorsRoutes } from '@app/modules/interiors/interiors.routes';
 
 import { NotFoundPageComponent } from '@core/pages/not-found-page/not-found-page.component';
-import { TermsConditionsPageComponent } from '@app/core/pages/terms-conditions/terms-conditions.component';
-
+import { TermsConditionsPageComponent } from '@core/pages/terms-conditions/terms-conditions.component';
+import { NetworkAwarePreloadingService } from '@core/services/network-aware-preloading.service';
 import { Page } from '@shared/page.enum';
 
-import { routes as AccountRoutes } from '@app/modules/account/account.routes';
-import { routes as InteriorsRoutes } from '@app/modules/interiors/interiors.routes';
-import { routes as ArchitectureRoutes } from '@app/modules/architecture/architecture.routes';
-import { routes as BlogRoutes } from '@app/modules/blog/blog.routes'
-
-import { HomeComponent } from './modules/home/home.component';
-import { AboutComponent } from './modules/about/about.component';
-
-const APP_ROUTES: Routes = [
+const routes: Routes = [
   {
     path: `${Page.Home}`,
     component: HomeComponent
@@ -65,13 +64,12 @@ const APP_ROUTES: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(
-      APP_ROUTES,
-      {
-        preloadingStrategy: PreloadAllModules
-      }
-    )
+    RouterModule.forRoot(routes, {
+      useHash: true,
+      initialNavigation: 'enabledBlocking',
+      preloadingStrategy: NetworkAwarePreloadingService
+    })
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

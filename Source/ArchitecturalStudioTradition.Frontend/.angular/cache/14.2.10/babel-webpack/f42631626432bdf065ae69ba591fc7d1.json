@@ -1,1 +1,0 @@
-{"ast":null,"code":"export * from './lib/api-generated.contract';\nexport * from './lib/api-base-url.provider';\nexport { PROVIDERS } from './lib/providers';","map":null,"metadata":{},"sourceType":"module"}

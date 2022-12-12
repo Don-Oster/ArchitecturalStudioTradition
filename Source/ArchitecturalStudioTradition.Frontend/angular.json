@@ -7,7 +7,11 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "changeDetection": "OnPush"
+        },
+        "@schematics/angular:application": {
+          "strict": true
         }
       },
       "root": "",
@@ -15,23 +19,23 @@
       "prefix": "app",
       "architect": {
         "build-selfhost": {
-          "builder": "ngx-build-plus:browser",
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
-            "baseHref": "/",
-            "deployUrl": "/",
+            "customWebpackConfig": {
+              "path": "./extend.webpack.config.js"
+            },
             "outputPath": "dist/selfhost",
             "index": "src/index.html",
             "main": "src/main.selfhost.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.selfhost.app.json",
-            "aot": false,
+            "inlineStyleLanguage": "scss",
             "assets": [
+              "src/site.webmanifest",
               "src/favicon.ico",
-              "src/site.webmanifest"
-            ],
+              "src/assets"
+            ],  
             "styles": [
-              "node_modules/normalize.css/normalize.css",
-              "node_modules/swiper/swiper.min.css",
               "src/styles.scss"
             ],
             "stylePreprocessorOptions": {
@@ -40,6 +44,7 @@
               ]
             },
             "scripts": [],
+            "webWorkerTsConfig": "tsconfig.worker.json",
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
           },
@@ -51,6 +56,18 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -58,14 +75,7 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": true,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
+              "buildOptimizer": true
             },
             "development": {
               "buildOptimizer": false,
@@ -75,12 +85,12 @@
               "sourceMap": true,
               "namedChunks": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "build-ssr": {
-          "builder": "ngx-build-plus:browser",
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
-            "baseHref": "/",
             "deployUrl": "/browser/",
             "outputPath": "dist/browser",
             "index": "src/index.html",
@@ -93,8 +103,6 @@
               "src/site.webmanifest"
             ],
             "styles": [
-              "node_modules/normalize.css/normalize.css",
-              "node_modules/swiper/swiper.min.css",
               "src/styles.scss"
             ],
             "stylePreprocessorOptions": {
@@ -129,8 +137,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 }
               ]
             },
@@ -145,7 +153,7 @@
           }
         },
         "serve-selfhost": {
-          "builder": "ngx-build-plus:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "proxyConfig": "proxy.local.conf.json",
             "port": 4200,
@@ -153,16 +161,16 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "archtradition:build-selfhost:production"
+              "browserTarget": "arch-tradition:build:production"
             },
             "development": {
-              "browserTarget": "archtradition:build-selfhost:development"
+              "browserTarget": "arch-tradition:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
         "serve-ssr": {
-          "builder": "ngx-build-plus:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "proxyConfig": "proxy.local.conf.json",
             "deployUrl": "/",
@@ -171,10 +179,12 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "archtradition:build-ssr:production"
+              "browserTarget": "archtradition:build-ssr:production",
+              "serverTarget": "archtradition:server:production"
             },
             "development": {
-              "browserTarget": "archtradition:build-ssr:development"
+              "browserTarget": "archtradition:build-ssr:development",
+              "serverTarget": "archtradition:server:development"
             }
           },
           "defaultConfiguration": "development"
@@ -185,6 +195,7 @@
             "outputPath": "dist/server",
             "main": "ssr.server.ts",
             "tsConfig": "tsconfig.ssr.server.json",
+            "inlineStyleLanguage": "scss",
             "stylePreprocessorOptions": {
               "includePaths": [
                 "./src/styles/"
@@ -208,24 +219,51 @@
               ],
               "sourceMap": false,
               "optimization": true
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "arch-tradition:build:production",
+              "serverTarget": "arch-tradition:server:production"
+            },
+            "development": {
+              "browserTarget": "arch-tradition:build:development",
+              "serverTarget": "arch-tradition:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "archtradition:build-selfhost"
+            "browserTarget": "arch-tradition:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
+            "tsConfig": "tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico"
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss"
@@ -235,32 +273,20 @@
                 "./src/styles/"
               ]
             },
-            "scripts": []
+            "scripts": [],
+            "webWorkerTsConfig": "tsconfig.worker.json"
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
             ],
             "exclude": [
               "**/node_modules/**"
             ]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "archtradition:serve-selfhost"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "archtradition:serve-selfhost:production"
-            }
           }
         }
       }
@@ -269,19 +295,22 @@
       "projectType": "library",
       "root": "projects/archtradition-contract",
       "sourceRoot": "projects/archtradition-contract/src",
-      "prefix": "lib",
+      "prefix": "archtradition-contract",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/archtradition-contract/tsconfig.lib.json",
             "project": "projects/archtradition-contract/ng-package.json"
           },
           "configurations": {
             "production": {
               "tsConfig": "projects/archtradition-contract/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/archtradition-contract/tsconfig.lib.json"
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -292,11 +321,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/archtradition-contract/tsconfig.lib.json",
-              "projects/archtradition-contract/tsconfig.spec.json"
+            "lintFilePatterns": [
+              "projects/archtradition-contract/**/*.ts",
+              "projects/archtradition-contract/**/*.html"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -308,6 +337,8 @@
   },
   "defaultProject": "archtradition",
   "cli": {
-    "analytics": false
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

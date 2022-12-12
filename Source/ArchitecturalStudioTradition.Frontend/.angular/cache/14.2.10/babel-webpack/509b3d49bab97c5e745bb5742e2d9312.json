@@ -1,1 +1,0 @@
-{"ast":null,"code":"export * from './get-size';\nexport * from './is-visible';\nexport * from './update'; //# sourceMappingURL=index.js.map","map":null,"metadata":{},"sourceType":"module"}

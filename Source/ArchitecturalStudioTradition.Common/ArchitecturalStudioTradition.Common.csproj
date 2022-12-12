@@ -1,13 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DotNetCore.CAP.Dashboard" Version="7.0.0" />
+    <PackageReference Include="DotNetCore.CAP.PostgreSql" Version="7.0.0" />
+    <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Npgsql.OpenTelemetry" Version="7.0.0" />
+    <PackageReference Include="OpenTelemetry" Version="1.4.0-beta.3" />
+    <PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="1.4.0-beta.3" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.0.0-rc9.9" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.0.0-rc9.9" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.GrpcNetClient" Version="1.0.0-rc9.9" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.0.0-rc9.9" />
+    <PackageReference Include="Scrutor" Version="4.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ArchitecturalStudioTradition.Model\ArchitecturalStudioTradition.Model.csproj" />
   </ItemGroup>
 
 </Project>

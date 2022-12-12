@@ -2,9 +2,9 @@
 
 namespace ArchitecturalStudioTradition.Model.UserIdentity
 {
-    public class User : IdentityUser
+    public class User : IdentityUser<long>
     {
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
+        public string? FirstName { get; init; }
+        public string? LastName { get; init; }
     }
 }

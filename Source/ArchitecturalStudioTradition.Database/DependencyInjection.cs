@@ -9,7 +9,10 @@ namespace ArchitecturalStudioTradition.Database
     {
         public static void AddPostgreSQLDatabase(this IServiceCollection services, IPostgreSqlConfig config, IdentityBuilder? identityBuilder = null)
         {
-            services.AddDbContext<PostgreSqlDbContext>(options => options.UseNpgsql(new PostgreSqlDbConfiguration(config).Connection()));
+            services.AddDbContext<PostgreSqlDbContext>(options => options
+                .UseNpgsql(new PostgreSqlDbConfiguration(config).Connection())
+                .UseSnakeCaseNamingConvention()
+                .EnableSensitiveDataLogging());
 
             if (identityBuilder != null)
             {

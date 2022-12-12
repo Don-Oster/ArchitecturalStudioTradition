@@ -1,67 +1,65 @@
-import 'zone.js/dist/zone-node';
-
 import { APP_BASE_HREF } from '@angular/common';
+
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
-import {join} from 'path';
 import { existsSync } from 'fs';
+import { join } from 'path';
 
-import { SsrServerModule, SSR_API_BASE_URL_TOKEN, META_BASE_URL_TOKEN } from './src/main.ssr.server';
+import { META_BASE_URL_TOKEN, SSR_API_BASE_URL_TOKEN, SsrServerModule } from './src/main.ssr.server';
 
-// Configuration
-const DIST_FOLDER_URI = 'dist/browser';
-const STATIC_FOLDER_URI = 'dist/server/static';
-const STATIC_FILES_URL = `/browser`;
-const DIST_FOLDER = join(process.cwd(), DIST_FOLDER_URI);
-const STATIC_FOLDER = join(process.cwd(), STATIC_FOLDER_URI);
-const SSR_WEBAPI_URL = process.env.ARCHTRADITION__FRONTEND__SsrWebApiUrl; // http://archtradition-cache/Public
-const SSR_BASE_URL = process.env.ARCHTRADITION__FRONTEND__BaseUrl; // https://archtradition.com
-const USE_PROD_ROBOTS = (process.env.ARCHTRADITION_FRONTEND__UseProdRobots || '').trim() === 'true';
-const INDEX_HTML = existsSync(join(DIST_FOLDER, 'index.original.html')) ? 'index.original.html' : 'index';
+import 'zone.js/node';
 
-// Express server
-export function app() {
+// The Express app is exported so that it can be used by serverless Functions.
+export function app(): express.Express {
   const server = express();
+  const distFilesUrl = 'dist/browser';
+  const staticFilesUrl = 'dist/server/static';
+  const distFolder = join(process.cwd(), distFilesUrl);
+  const staticFolder = join(process.cwd(), staticFilesUrl);
+  const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+  const useProdRobots = (process.env.ARCHTRADITION_FRONTEND__UseProdRobots || '').trim() === 'true';
+  const ssrWebApiUrl = process.env.ARCHTRADITION__FRONTEND__SsrWebApiUrl; // http://archtradition-cache/Public
+  const ssrBaseUrl = process.env.ARCHTRADITION__FRONTEND__BaseUrl; // https://archtradition.com
 
-  // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
+  // Our Universal express-engine (found @ https://github.com/angular/universal/tree/main/modules/express-engine)
   server.engine('html', ngExpressEngine({
     bootstrap: SsrServerModule,
     providers: [
-      { provide: SSR_API_BASE_URL_TOKEN, useValue: SSR_WEBAPI_URL },
-      { provide: META_BASE_URL_TOKEN, useValue: SSR_BASE_URL },
+      { provide: SSR_API_BASE_URL_TOKEN, useValue: ssrWebApiUrl },
+      { provide: META_BASE_URL_TOKEN, useValue: ssrBaseUrl },
     ]
   }));
 
   server.set('view engine', 'html');
-  server.set('views', DIST_FOLDER);
+  server.set('views', distFolder);
 
   // Serve static files from /dist/browser
-  server.use(STATIC_FILES_URL, express.static(DIST_FOLDER, {
-      maxAge: '1y'
-    })
+  server.use(staticFilesUrl, express.static(distFolder, {
+    maxAge: '1y'
+  })
   );
 
   // Serve robots.txt file from /dist/server/static
   server.use('/robots.txt', (req, res) => {
-    const filePath = USE_PROD_ROBOTS ? 'robots.prod.txt' : 'robots.txt';
-    res.sendFile(join(STATIC_FOLDER, filePath));
+    const filePath = useProdRobots ? 'robots.prod.txt' : 'robots.txt';
+    res.sendFile(join(staticFolder, filePath));
   });
 
   // Serve favicon.ico file from /dist/browser
   server.use('/favicon.ico', (req, res) => {
-      res.sendFile(join(DIST_FOLDER, 'favicon.ico'));
+    res.sendFile(join(distFolder, 'favicon.ico'));
   });
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
-    res.render(INDEX_HTML, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
 
   return server;
 }
 
-function run() {
-  const port = process.env.PORT || 4000;
+function run(): void {
+  const port = process.env['PORT'] || 4000;
 
   // Start up the Node server
   const server = app();
@@ -80,4 +78,4 @@ if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
   run();
 }
 
-export * from './src/main.ssr.server';
+export * from './src/main.server';

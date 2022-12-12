@@ -4,7 +4,6 @@ using ArchitecturalStudioTradition.Infrastructure.Authentication;
 using ArchitecturalStudioTradition.Infrastructure.EmailManagement;
 using ArchitecturalStudioTradition.Infrastructure.EmailManagement.Models;
 using ArchitecturalStudioTradition.Model.UserIdentity;
-using AutoMapper;
 using Microsoft.AspNetCore.WebUtilities;
 
 namespace ArchitecturalStudioTradition.Application.Account.Register
@@ -13,18 +12,16 @@ namespace ArchitecturalStudioTradition.Application.Account.Register
     {
         private readonly IIdentityProvider _identityProvider;
         private readonly IEmailSender _emailSender;
-        private readonly IMapper _mapper;
 
-        public RegisterCommandHandler(IIdentityProvider identityProvider, IEmailSender emailSender, IMapper mapper)
+        public RegisterCommandHandler(IIdentityProvider identityProvider, IEmailSender emailSender)
         {
             _identityProvider = identityProvider;
             _emailSender = emailSender;
-            _mapper = mapper;
         }
 
         public async Task<RegistrationResponse> Handle(RegisterCommand request, CancellationToken cancellationToken)
         {
-            var user = _mapper.Map<User>(request);
+            var user = new User();
 
             var response = await _identityProvider.RegisterUserAsync(user, request.Password, new[] { Role.Viewer });
             if (response.IsSuccessful)

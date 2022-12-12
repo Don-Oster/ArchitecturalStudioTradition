@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Prometheus;
 using System.Text;
+using ArchitecturalStudioTradition.Common.Telemetry;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,13 +20,17 @@ var config = WebApiConfiguration.GetInstance();
 
 builder.Services.ConfigureCors();
 builder.Services.ConfigureIISIntegration();
-builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCQRS(typeof(Program).Assembly);
 builder.Services.AddApi(config);
 builder.Services.ConfigureProblemDetails();
+builder.Services.AddHealthChecks();
+builder.Services.AddOpenTelemetry();
+builder.Services.AddApplicationGraphQL();
+//    .AddCheck<CustomHealthCheck>("API")
+//    .AddNpgSql();
 
 var identityBuilder = builder.Services.AddIdentity<User, IdentityRole>(opt =>
 {
@@ -106,12 +111,10 @@ app.UseHttpsRedirection();
 app.UseCors("CorsPolicy");
 
 app.UseAuthentication();
-app.UseAuthorization();
 app.UseRouting();
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapMetrics();
-});
+app.UseAuthorization();
+app.UseHealthChecks("/health");
+app.MapMetrics();
 
 app.MapControllers();
 app.MapMethods("/api/heartbeat", new[] { "HEAD" }, () => Results.Ok());

@@ -18,7 +18,7 @@
     "src/test.ts",
     "src/**/*.spec.ts",
     "src/selfhost/*",
-    "src/main.selfhost.*",
+    "src/main.selfhost.*"
   ],
   "angularCompilerOptions": {
     "preserveWhitespaces": true,

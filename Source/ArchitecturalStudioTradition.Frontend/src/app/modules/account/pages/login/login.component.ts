@@ -6,7 +6,7 @@ import { SocialUser } from '@abacritt/angularx-social-login';
 
 import { ReCaptchaV3Service } from 'ngx-captcha';
 
-import { AuthenticationResponse } from '@archtradition-contract';
+import { AuthenticationResponse } from 'archtradition-contract';
 import { environment } from '@environment';
 import { AuthenticationService } from '@core/services/authentication/authentication.service';
 import { Page } from '@shared/page.enum';

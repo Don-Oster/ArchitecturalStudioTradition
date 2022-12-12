@@ -1,12 +1,12 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+
 import { Subject } from 'rxjs';
 
-import { ConnectionService } from 'angular-connection-service';
-
-import SmoothScrollbar from 'smooth-scrollbar';
 import ScrollTriggerPlugin from '@app/vendor/smooth-scrollbar/ScrollTriggerPlugin';
 import SoftScrollPlugin from '@app/vendor/smooth-scrollbar/SoftScrollPlugin';
+import { ConnectionService } from 'angular-connection-service';
+import SmoothScrollbar from 'smooth-scrollbar';
 
 SmoothScrollbar.use(ScrollTriggerPlugin, SoftScrollPlugin);
 
@@ -15,12 +15,12 @@ SmoothScrollbar.use(ScrollTriggerPlugin, SoftScrollPlugin);
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnDestroy {
 
   private destroy$: Subject<void> = new Subject();
 
-  hasNetworkConnection: boolean = true;
-  hasInternetAccess: boolean = true;
+  hasNetworkConnection = true;
+  hasInternetAccess = true;
 
   constructor(
     @Inject(DOCUMENT) private readonly document: Document,
@@ -30,9 +30,6 @@ export class AppComponent implements OnInit, OnDestroy {
       this.hasNetworkConnection = currentState.hasNetworkConnection;
       this.hasInternetAccess = currentState.hasInternetAccess;
     });
-}
-
-  ngOnInit() {
   }
 
   ngAfterViewInit() {
@@ -48,7 +45,19 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.destroy$.next(null);
+    this.destroy$.next();
     this.destroy$.complete();
   }
+}
+
+if (typeof Worker !== 'undefined') {
+  // Create a new
+  const worker = new Worker(new URL('./app.worker', import.meta.url));
+  worker.onmessage = ({ data }) => {
+    console.log(`page got message: ${data}`);
+  };
+  worker.postMessage('hello');
+} else {
+  // Web Workers are not supported in this environment.
+  // You should add a fallback so that your program still executes correctly.
 }

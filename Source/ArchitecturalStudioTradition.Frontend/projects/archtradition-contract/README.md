@@ -1,7 +1,24 @@
-# archtradition-contract
+# ArchtraditionContract
 
-## 1. How to generate contract
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
-1. open `ArchitecturalStudioTradition.sln` in Visual Studio,
-2. run `ArchitecturalStudioTradition.WebApi` in `Debug` mode to generate `swagger.json` file,
-3. build `ArchitecturalStudioTradition.Frontend` in `Debug` mode to generate `src/lib/api-generated.contract.ts` file.
+## Code scaffolding
+
+Run `ng generate component component-name --project archtradition-contract` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project archtradition-contract`.
+> Note: Don't forget to add `--project archtradition-contract` or else it will be added to the default project in your `angular.json` file. 
+
+## Build
+
+Run `ng build archtradition-contract` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Publishing
+
+After building your library with `ng build archtradition-contract`, go to the dist folder `cd dist/archtradition-contract` and run `npm publish`.
+
+## Running unit tests
+
+Run `ng test archtradition-contract` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { InteriorsComponent } from './interiors.component';\nexport const routes = [{\n  path: '',\n  component: InteriorsComponent\n}];","map":null,"metadata":{},"sourceType":"module"}

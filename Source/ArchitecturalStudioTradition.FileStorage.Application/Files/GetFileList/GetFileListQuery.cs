@@ -1,10 +1,10 @@
 ﻿using ArchitecturalStudioTradition.CQRS.Interfaces;
-using ArchitecturalStudioTradition.FileStorage.Contract.v1;
+using System.Collections.Immutable;
 
 namespace ArchitecturalStudioTradition.FileStorage.Application.Files.GetFileList
 {
-    public class GetFileListQuery : ICommand<GetFileListResponse>
+    public record GetFileListQuery : ICommand<ImmutableList<(string fileName, Uri fileUrl)>>
     {
-        public string Hash { get; set; }
+        public required string Hash { get; init; }
     }
 }

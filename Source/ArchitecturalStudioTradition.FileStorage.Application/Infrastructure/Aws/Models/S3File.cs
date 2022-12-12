@@ -1,9 +1,9 @@
 ﻿namespace ArchitecturalStudioTradition.FileStorage.Application.Infrastructure.Aws.Models
 {
-    public class S3File
+    public record S3File
     {
-        public string Hash { get; set; }
-        public string FileName { get; set; }
-        public Uri FileUrl { get; set; }
+        public required string Hash { get; init; }
+        public required string FileName { get; init; }
+        public required Uri FileUrl { get; init; }
     }
 }

@@ -3,20 +3,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ArchitecturalStudioTradition.WebApi.Configuration
 {
-    public class WebApiConfiguration : IAwsConfiguration
+    public record WebApiConfiguration : IAwsConfiguration
     {
         private const string ConfigurationPrefix = "ARCHTRADITION:FILESTORAGE";
 
         #region IAwsConfiguration
 
         [Required]
-        public string AwsBucketName { get; set; }
+        public string AwsBucketName { get; init; }
 
         [Required]
-        public string AwsRegionSystemName { get; set; }
+        public string AwsRegionSystemName { get; init; }
 
         [Required]
-        public Uri CloudFrontUrl { get; set; }
+        public Uri CloudFrontUrl { get; init; }
 
         #endregion
 

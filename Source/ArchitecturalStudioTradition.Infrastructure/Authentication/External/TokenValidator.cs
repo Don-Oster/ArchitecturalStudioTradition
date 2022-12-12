@@ -1,5 +1,4 @@
 ﻿using ArchitecturalStudioTradition.Model.UserIdentity;
-using AutoMapper;
 
 namespace ArchitecturalStudioTradition.Infrastructure.Authentication.External
 {
@@ -11,10 +10,9 @@ namespace ArchitecturalStudioTradition.Infrastructure.Authentication.External
 
     public abstract class BaseTokenValidator
     {
-        private readonly IMapper _mapper;
-        public BaseTokenValidator(IMapper mapper)
-        {
-            _mapper = mapper;
-        }
+        //public BaseTokenValidator(IMapper mapper)
+        //{
+        //    _mapper = mapper;
+        //}
     }
 }

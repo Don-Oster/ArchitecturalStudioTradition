@@ -1,10 +1,9 @@
 ﻿using ArchitecturalStudioTradition.CQRS.Interfaces;
-using ArchitecturalStudioTradition.FileStorage.Contract.v1;
 
 namespace ArchitecturalStudioTradition.FileStorage.Application.Files.GetFile
 {
-    public class GetFileQuery : ICommand<GetFileResponse>
+    public record GetFileQuery : ICommand<(string fileName, Uri fileUrl)>
     {
-        public string Hash { get; set; }
+        public required string Hash { get; init; }
     }
 }

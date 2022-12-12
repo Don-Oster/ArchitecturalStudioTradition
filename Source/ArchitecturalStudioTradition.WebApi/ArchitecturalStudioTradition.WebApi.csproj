@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>b7ebb1fa-aca7-4172-94df-e4264f10ac81</UserSecretsId>
@@ -9,24 +9,34 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="6.0.2" />
     <PackageReference Include="Google.Apis.Auth" Version="1.57.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="6.0.10" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.10" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.11" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
+    <PackageReference Include="HotChocolate.AspNetCore" Version="12.15.2" />
+    <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="12.15.2" />
+    <PackageReference Include="HotChocolate.Data" Version="12.15.2" />
+    <PackageReference Include="HotChocolate.Data.EntityFramework" Version="12.15.2" />
+    <PackageReference Include="HotChocolate.PersistedQueries.InMemory" Version="12.15.2" />
+    <PackageReference Include="HotChocolate.Stitching" Version="12.15.2" />
+    <PackageReference Include="HotChocolate.Subscriptions.InMemory" Version="12.15.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+    <PackageReference Include="NLog" Version="5.1.0" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="5.2.0" />
     <PackageReference Include="NSwag.Annotations" Version="13.18.0" />
     <PackageReference Include="prometheus-net.AspNetCore" Version="7.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ArchitecturalStudioTradition.Application\ArchitecturalStudioTradition.Application.csproj" />
     <ProjectReference Include="..\ArchitecturalStudioTradition.CQRS\ArchitecturalStudioTradition.CQRS.csproj" />
-    <ProjectReference Include="..\ArchitecturalStudioTradition.Database.PostgreSQL\ArchitecturalStudioTradition.Database.csproj" />
+    <ProjectReference Include="..\ArchitecturalStudioTradition.Database\ArchitecturalStudioTradition.Database.csproj" />
     <ProjectReference Include="..\ArchitecturalStudioTradition.Infrastructure\ArchitecturalStudioTradition.Infrastructure.csproj" />
     <ProjectReference Include="..\ArchitecturalStudioTradition.Model\ArchitecturalStudioTradition.Model.csproj" />
   </ItemGroup>

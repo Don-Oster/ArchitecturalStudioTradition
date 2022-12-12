@@ -1,9 +1,8 @@
-﻿using ArchitecturalStudioTradition.FileStorage.Contract.v1;
-using MediatR;
+﻿using MediatR;
 
 namespace ArchitecturalStudioTradition.FileStorage.Application.Files.GetFile
 {
-    public class GetFileQueryHandler : IRequestHandler<GetFileQuery, GetFileResponse>
+    public class GetFileQueryHandler : IRequestHandler<GetFileQuery, (string fileName, Uri fileUrl)>
     {
         private readonly IFileRepository _fileRepository;
 
@@ -12,13 +11,11 @@ namespace ArchitecturalStudioTradition.FileStorage.Application.Files.GetFile
             _fileRepository = fileRepository;
         }
 
-        public async Task<GetFileResponse> Handle(GetFileQuery request, CancellationToken cancellationToken)
+        public async Task<(string fileName, Uri fileUrl)> Handle(GetFileQuery request, CancellationToken cancellationToken)
         {
             var file = await _fileRepository.GetFileAsync(request.Hash);
 
-            return new GetFileResponse { 
-                File = new FileModel { FileName = file.FileName, FileUrl = file.FileUrl } 
-            };
+            return (file.FileName, file.FileUrl);
         }
     }
 }
